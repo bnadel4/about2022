@@ -17,6 +17,9 @@
 // with the appropriate message.
 
 var usernameResponce;
+var score = 0;
+const yesArray = ['yes', 'y', 'yep', 'yeah', 'yusss'];
+const noArray = ['no', 'n', 'nah'];
 
 function introQuestions() {
   usernameResponce = prompt('What name do you go by?');
@@ -24,6 +27,9 @@ function introQuestions() {
   if (usernameResponce === '') {
     usernameResponce = 'anon';
     alert('It\'s okay if you\'re shy you can speak up ' + usernameResponce + '.');
+  } else if (usernameResponce === null) {
+    alert('YOU HIT CANCEL! Lets try this again');
+    introQuestions();
   } else {
     alert('Bonjour ' + usernameResponce);
   }
@@ -35,16 +41,17 @@ function introQuestions() {
 // DONE: Refactor code to include a new array with the values
 // 'yes', 'y', 'yep', 'yeah', 'yusss' and check to see if the workoutResponse includes
 // these values. Do the same thing with the negative responses.
-var score = 0;
 
-const yesArray = ['yes', 'y', 'yep', 'yeah', 'yusss'];
-const noArray = ['no', 'n', 'nah'];
 
 function question1() {
-  var workoutResponse = prompt('Did I work out today?').toLowerCase();
+  var workoutResponse = prompt('Did I work out today?');
   console.log('workoutResponse', workoutResponse);
- 
-  if (yesArray.includes(workoutResponse)) {
+  if (workoutResponse === null) {
+    workoutResponse = 'no';
+  } else {
+    workoutResponse = workoutResponse.toLowerCase();
+    console.log('workout', workoutResponse);
+  } if (yesArray.includes(workoutResponse)) {
     alert('Well wouldn\'t you like to know!');
     score++;
     console.log('score', score);
@@ -57,11 +64,15 @@ function question1() {
 
 // Question 2
 function question2() {
-  var girlDadResponse = prompt('Got daughter?').toLowerCase();
+  var girlDadResponse = prompt('Got daughter?');
   console.log('girlDadResponse', girlDadResponse);
-
+  if (girlDadResponse === null) {
+    girlDadResponse = 'no';
+  } else {
+    girlDadResponse = girlDadResponse.toLowerCase();
+  }
   if (yesArray.includes(girlDadResponse)) {
-    alert('got one'); 
+    alert('got one');
     score++;
     console.log('score', score);
   } else if (noArray.includes(girlDadResponse)) {
@@ -75,9 +86,13 @@ function question2() {
 
 // Question 3
 function question3() {
-  var hairdoResponse = prompt('Did I get a haircut recently?').toLowerCase();
+  var hairdoResponse = prompt('Did I get a haircut recently?');
   console.log('hairdoResponse', hairdoResponse);
-
+  if (hairdoResponse === null) {
+    hairdoResponse = 'no';
+  } else {
+    hairdoResponse = hairdoResponse.toLowerCase();
+  }
   if (yesArray.includes(hairdoResponse)) {
     alert('feelin myself');
     score++;
@@ -92,9 +107,13 @@ function question3() {
 // Question 4
 
 function question4() {
-  var ufoResponse = prompt('Have you ever seen a UFO?').toLowerCase();
+  var ufoResponse = prompt('Have you ever seen a UFO?');
   console.log('ufoResponse', ufoResponse);
-
+  if (ufoResponse === null) {
+    ufoResponse = 'no';
+  } else {
+    ufoResponse = ufoResponse.toLowerCase();
+  }
   if (yesArray.includes(ufoResponse)) {
     alert('I want to believe you\'re telling the truth ' + usernameResponce);
   } else if (noArray.includes(ufoResponse)) {
@@ -109,9 +128,13 @@ function question4() {
 
 // Question 5
 function question5() {
-  var cookResponse = prompt('Do you think I cook everday?').toLowerCase();
+  var cookResponse = prompt('Do you think I cook everday?');
   console.log('cookResponse', cookResponse);
-
+  if (cookResponse === null) {
+    cookResponse = 'no';
+  } else {
+    cookResponse = cookResponse.toLowerCase();
+  }
   if (yesArray.includes(cookResponse)) {
     alert('Wrong!');
   } else if (noArray.includes(cookResponse)) {
@@ -189,6 +212,17 @@ function question7() {
   }
 }
 
+
+function tally() {
+  if (score >4) {
+    alert('You have answered ' + score + ' out of seven questions correctly. Thanks for getting to know me ' + usernameResponce + '!');
+  } else if (score <4) {
+    alert('sucks brah you got ' + score + ' out of seven questions correct.');
+  }
+
+  
+}
+
 introQuestions();
 question1();
 question2();
@@ -197,13 +231,9 @@ question4();
 question5();
 question6();
 // question7();
-
-function tally() {
-  var results = prompt('You have answered ' + score + ' out of seven questions correctly. Thanks for getting to know me ' + usernameResponce + '!');
-  console.log('results', results);
-  
-}
 tally();
+
+
 
 // function question2() {
 //   var girlDadResponse = prompt('Got daughter?').toLowerCase();
