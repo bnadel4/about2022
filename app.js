@@ -147,7 +147,7 @@ function question5() {
 }
 
 // Question 6
-// while age responce isnt 36 the loop continues to prompt the question. 
+// while age responce isnt 36 the loop continues to prompt the question.
 // when the answer is correct the loop ends and we ther lmao alert.
 
 function question6() {
@@ -175,15 +175,15 @@ function question6() {
       console.log('You are off by ' + ageDiff + ' years');
     } else if (ageResponse > 36) {
       alert('Try lower ' + ' you now have ' + attemptsRemaining + ' attempts left.');
-    } 
+    }
     console.log(ageResponse + 1);
   }
 }
 
-//Question 7: As a developer, I want to add a seventh question to my guessing game that has multiple possible correct 
-// answers that are stored in an array. For instance, "Can you guess a state that I have lived in besides Washington?", so 
-// that even more of my programming skills are showcased. For now, I will structure this question so that the user has six 
-// tries to get a single correct answer, and upon using up those tries OR getting a correct answer, displays a message to the 
+//Question 7: As a developer, I want to add a seventh question to my guessing game that has multiple possible correct
+// answers that are stored in an array. For instance, "Can you guess a state that I have lived in besides Washington?", so
+// that even more of my programming skills are showcased. For now, I will structure this question so that the user has six
+// tries to get a single correct answer, and upon using up those tries OR getting a correct answer, displays a message to the
 // user indicating all of the possible correct answers
 // upon correct or end of 6 tries tell them the whole array
 // HERE IS A SAMPLE ARRAY:
@@ -193,22 +193,23 @@ function question7() {
   var attemptsRemaining = 6;
   const stateArray = ['new york', 'california', 'washington'];
 
-  while(attemptsRemaining > 0 && (stateResponse !== stateArray[0] || stateResponse !== stateArray[1] || stateResponse || stateArray[2])) {
-    var stateResponse = prompt('Can you guess a state that I have lived in besides North Carolina?').toLowerCase();
+  while(attemptsRemaining > 0) {
+    var stateResponse = prompt('Can you guess a state that I have lived in besides North Carolina? You have ' + attemptsRemaining + ' attempts remaining.');
     attemptsRemaining--;
-
-    console.log('stateResponse', stateResponse);
-    console.log('stateArray', stateArray);
-    if (stateResponse === stateArray[0] || stateResponse === stateArray[1] || stateResponse === stateArray[2]) {
-      alert('Correct');
-      score++;
-      console.log('score', score);
-      stateArray.includes(stateResponse);
-    } else if (attemptsRemaining === 0) {
-      alert('All the states I\'ve lived in besides NC are ' + stateArray);
+    if (stateResponse === null) {
+      stateResponse = 'no';
     } else {
-      alert('All the states I\'ve lived in besides NC are ' + stateArray);
+      stateResponse = stateResponse.toLowerCase();
     }
+    if (stateResponse === stateArray[0] || stateResponse === stateArray[1] || stateResponse === stateArray[2]) {
+      // stateArray.includes(stateResponse); This is a refactored version of the line above.
+      alert('Correct');
+      attemptsRemaining = 0;
+      score++;
+    }
+  }
+  if (attemptsRemaining === 0) {
+    alert('All the states I\'ve lived in besides NC are ' + stateArray);
   }
 }
 
@@ -219,8 +220,6 @@ function tally() {
   } else if (score <4) {
     alert('sucks brah you got ' + score + ' out of seven questions correct.');
   }
-
-  
 }
 
 introQuestions();
@@ -230,7 +229,7 @@ question3();
 question4();
 question5();
 question6();
-// question7();
+question7();
 tally();
 
 
@@ -240,7 +239,7 @@ tally();
 //   console.log('girlDadResponse', girlDadResponse);
 
 //   if (girlDadResponse === 'yes' || girlDadResponse === 'y') {
-//     alert('got one'); 
+//     alert('got one');
 //     score++;
 //     console.log('score', score);
 //   } else if (girlDadResponse === 'no' || girlDadResponse === 'n') {
